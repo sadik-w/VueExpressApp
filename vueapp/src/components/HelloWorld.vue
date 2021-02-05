@@ -23,9 +23,6 @@ export default {
     }
   },
   created () {
-    // this.$http.get('/').then(res => {
-    //   this.message=res.data
-    // })
     this.$http.get('/users', {
       params: {
         name: 'whl'

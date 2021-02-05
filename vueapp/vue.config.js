@@ -1,4 +1,5 @@
 module.exports = {
+  outputDir: '../express/public',
   "transpileDependencies": [
     "vuetify"
   ],

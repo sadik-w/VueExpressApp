@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  console.log(req.params);
+const router = (req, res) => {
+  // console.log(req.params);
   var data = {
     code: 0,
     data: {
@@ -14,6 +12,6 @@ router.get('/', function (req, res, next) {
     msg: "请求成功"
   }
   res.json(data);
-});
+};
 
 module.exports = router;
