@@ -23,12 +23,10 @@ export default {
     }
   },
   created () {
-    this.$http.get('/users', {
-      params: {
+    this.$http.post('/info/user_info', {
         name: 'whl'
-      }
     }).then(res => {
-      this.message = res.data
+      this.message = res
     })
   }
 }
