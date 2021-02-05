@@ -10,7 +10,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 let config = {
   baseURL: '/app',
-  // timeout: 60 * 1000, // Timeout
+  timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
 
@@ -30,7 +30,7 @@ _axios.interceptors.request.use(
 // Add a response interceptor
 _axios.interceptors.response.use(
   function (response) {
-    // Do something with response data
+    console.log(response)
     return response;
   },
   function (error) {

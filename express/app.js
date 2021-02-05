@@ -37,5 +37,4 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-process.env.PORT=9527
 module.exports = app;
