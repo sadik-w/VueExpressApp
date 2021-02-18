@@ -1,0 +1,21 @@
+
+const SUCCESS_CODE = '200';
+const PERMISSION_DENIED_CODE = '300';
+const PARAMETER_EXCEPTION_CODE = '400';
+const SYSTEM_ERROR_CODE = '500';
+
+class CUSTOM_ERROR extends Error {
+  constructor(code, msg) {
+    super(msg)
+    this.code = code
+    this.msg = msg
+  }
+}
+
+module.exports = {
+  CUSTOM_ERROR: CUSTOM_ERROR,
+  SUCCESS_CODE: SUCCESS_CODE,
+  PERMISSION_DENIED_CODE: PERMISSION_DENIED_CODE,
+  PARAMETER_EXCEPTION_CODE: PARAMETER_EXCEPTION_CODE,
+  SYSTEM_ERROR_CODE: SYSTEM_ERROR_CODE,
+}

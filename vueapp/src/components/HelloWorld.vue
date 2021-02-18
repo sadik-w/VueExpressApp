@@ -6,7 +6,7 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
-    <div>{{message.msg}}</div>
+    <div>{{message}}</div>
 
   </div>
 </template>
@@ -23,8 +23,8 @@ export default {
     }
   },
   created () {
-    this.$http.post('/info/user_info', {
-        name: 'whl'
+    this.$http.post('/info', {
+      name: 'whl'
     }).then(res => {
       this.message = res
     })
@@ -32,7 +32,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 h3 {
   margin: 40px 0 0;
