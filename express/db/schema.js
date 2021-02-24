@@ -12,6 +12,11 @@ var user_info = new Schema({
     required: true,
     unique: false
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
 });
 
 module.exports = {

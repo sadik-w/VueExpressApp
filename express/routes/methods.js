@@ -1,21 +1,24 @@
 
-const SUCCESS_CODE = '200';
-const PERMISSION_DENIED_CODE = '300';
-const PARAMETER_EXCEPTION_CODE = '400';
-const SYSTEM_ERROR_CODE = '500';
-
-class CUSTOM_ERROR extends Error {
-  constructor(code, msg) {
-    super(msg)
-    this.code = code
-    this.msg = msg
-  }
-}
+const SUCCESS_JSON = {
+  code: '200',
+  msg: '操作成功'
+};
+const PERMISSION_DENIED_JSON = {
+  code: '300',
+  msg: '权限不足'
+};
+const PARAMETER_EXCEPTION_JSON = {
+  code: '400',
+  msg: '参数异常'
+};
+const SYSTEM_ERROR_JSON = {
+  code: '500',
+  msg: '系统错误'
+};
 
 module.exports = {
-  CUSTOM_ERROR: CUSTOM_ERROR,
-  SUCCESS_CODE: SUCCESS_CODE,
-  PERMISSION_DENIED_CODE: PERMISSION_DENIED_CODE,
-  PARAMETER_EXCEPTION_CODE: PARAMETER_EXCEPTION_CODE,
-  SYSTEM_ERROR_CODE: SYSTEM_ERROR_CODE,
+  SUCCESS_JSON: SUCCESS_JSON,
+  PERMISSION_DENIED_JSON: PERMISSION_DENIED_JSON,
+  PARAMETER_EXCEPTION_JSON: PARAMETER_EXCEPTION_JSON,
+  SYSTEM_ERROR_JSON: SYSTEM_ERROR_JSON,
 }

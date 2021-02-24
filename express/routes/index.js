@@ -1,23 +1,22 @@
 //接口管理文件
 var createError = require('http-errors');
 var interface = require('./response');
-var app = require('../app');
-
+var formValide = require('./form');
 const route = function (app) {
   app.use((error, req, res, next) => {
     if (error) {
       res.json({ msg: error.message, code: error.code })
     }
-    else{
+    else {
       next()
     }
   });
 
-  app.use('/info', interface.get_user_info);
-
-  app.use('/login', interface.login);
+  app.use('/login', formValide.loginValidate, interface.login);
 
   app.use('/login_out', interface.login_out);
+
+  app.use('/info', interface.get_user_info);
 
   app.use('/app', interface.page);
 

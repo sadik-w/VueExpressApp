@@ -8,8 +8,7 @@ var app = express();
 var session = require('express-session');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var mongoose = require('./db')
-// view engine setup
+var MongoStore = require('connect-mongo')(session);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
@@ -23,15 +22,18 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: '12345',
+  secret: 'express',
   name: 'TOKEN',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-  cookie: { maxAge: 80000, httpOnly: true },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+  cookie: { maxAge: 3600 * 1000, httpOnly: true },  //设置maxAge是20000ms，即20s后session和相应的cookie失效过期
   resave: false,
   saveUninitialized: true,
+  store: new MongoStore({//将session存储到mongodb数据库中
+    url: 'mongodb://localhost/token'
+  })
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, './public/github.png')))
+app.use(favicon(path.join(__dirname, './public/github.png')));
 var route = require('./routes/index').route;
 route(app);
 module.exports = app;

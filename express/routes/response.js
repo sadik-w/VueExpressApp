@@ -1,34 +1,40 @@
 var validate = require('./request').validate;
 var model = require('../db/model');
 var path = require('path');
-var form = require('./form');
-var methods = require('./methods')
-const get_user_info = (req, res, next) => {//获取用户信息
+var validationResult = require('express-validator/check').validationResult;
+var jsonData = require('./methods')
+
+
+module.exports.get_user_info = (req, res, next) => {//获取用户信息
   res.json(req.session);
 };
 
-const login = (req, res, next) => {//登录
-  var params = validate(req);
-  model.user_info.find({ 'username': params.username }, function (err, docs) {
-    console.log(docs)
-    if (docs) {
-      if (params.password === docs[0].password) {
-        req.session.regenerate(function (err) {
+module.exports.login = (req, res, next) => {//登录
+  console.log(req.session.username)
+  var data = validate(req);
+  var errors = validationResult(req);
+  if (errors.isEmpty()) {
+    model.user_info.findOne({ 'username': data.username }, function (err, docs) {
+      if (data.password === docs.password) {
+        req.session.regenerate(function (err) {//生成token
           if (err) {
-            throw new methods.CUSTOM_ERROR(form.SYSTEM_ERROR,'密码错误')
+            res.json(jsonData.SYSTEM_ERROR_JSON);
           }
-          req.session.username = params.username;
+          req.session.username = data.username;//添加token的username
           res.json({ code: 200, msg: '登录成功' });
         });
       }
       else {
-        throw new methods.CUSTOM_ERROR(form.SYSTEM_ERROR,'密码错误')
+        res.json({ code: 500, msg: '密码错误' });
       }
-    }
-  })
+    })
+  }
+  else {
+    res.json({ errors: errors.mapped() });
+  }
 }
 
-const login_out = (req, res, next) => {//退出登录
+module.exports.login_out = (req, res, next) => {//退出登录
   console.log(req.session.username)
   req.session.destroy(function (err) {
     if (err) {
@@ -41,14 +47,6 @@ const login_out = (req, res, next) => {//退出登录
   });
 }
 
-const page = (req, res, next) => {//访问页面
-  // res.cookie('isVisit', 1, { maxAge: 60 * 1000, httpOnly: true }) // 该处是设置 cookie 与 httpOnly 
+module.exports.page = (req, res, next) => {//访问页面
   res.sendFile(path.join(__dirname, '../public/index.html'));
-}
-
-module.exports = {
-  get_user_info: get_user_info,
-  login: login,
-  login_out: login_out,
-  page: page
 }
