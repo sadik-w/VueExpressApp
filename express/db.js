@@ -1,5 +1,5 @@
 var mongoose = require("mongoose"); //引入mongoose
-var DBURL = 'mongodb://localhost:27017/user';
+var DBURL = 'mongodb://localhost:27017/Express';
 
 mongoose.set('useCreateIndex', true) //加上这个
 mongoose.connect(DBURL, {//连接到mongoDB的todo数据库

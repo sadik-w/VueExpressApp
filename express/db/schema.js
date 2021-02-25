@@ -1,7 +1,7 @@
 var mongoose = require("../db");
 var Schema = mongoose.Schema;
 
-var user_info = new Schema({
+module.exports.user_info = new Schema({
   username: {
     type: String,
     required: true,
@@ -12,13 +12,43 @@ var user_info = new Schema({
     required: true,
     unique: false
   },
+  authority: {
+    type: String,
+    required: true,
+    unique: false
+  },
   email: {
     type: String,
     required: true,
     unique: true
   },
 });
-
-module.exports = {
-  user_info: user_info,
-}
+module.exports.menu = new Schema({
+  authority: {
+    type: String,
+    required: true,
+    unique: false
+  },
+  title: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  value: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  submenu: [{
+    title: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    value: {
+      type: String,
+      required: true,
+      unique: true
+    },
+  }]
+});

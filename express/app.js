@@ -26,9 +26,9 @@ app.use(session({
   name: 'TOKEN',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
   cookie: { maxAge: 3600 * 1000, httpOnly: true },  //设置maxAge是20000ms，即20s后session和相应的cookie失效过期
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: new MongoStore({//将session存储到mongodb数据库中
-    url: 'mongodb://localhost/token'
+    url: 'mongodb://localhost/Express'
   })
 }));
 

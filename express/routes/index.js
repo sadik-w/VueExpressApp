@@ -18,6 +18,8 @@ const route = function (app) {
 
   app.use('/info', interface.get_user_info);
 
+  app.use('/menu', interface.menu);
+
   app.use('/app', interface.page);
 
   app.use(function (req, res, next) {

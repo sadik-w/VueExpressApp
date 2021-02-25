@@ -10,7 +10,6 @@ module.exports.get_user_info = (req, res, next) => {//获取用户信息
 };
 
 module.exports.login = (req, res, next) => {//登录
-  console.log(req.session.username)
   var data = validate(req);
   var errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -20,7 +19,8 @@ module.exports.login = (req, res, next) => {//登录
           if (err) {
             res.json(jsonData.SYSTEM_ERROR_JSON);
           }
-          req.session.username = data.username;//添加token的username
+          req.session.username = data.username;//添加token的username authority
+          req.session.authority = docs.authority;
           res.json({ code: 200, msg: '登录成功' });
         });
       }
@@ -35,16 +35,36 @@ module.exports.login = (req, res, next) => {//登录
 }
 
 module.exports.login_out = (req, res, next) => {//退出登录
-  console.log(req.session.username)
-  req.session.destroy(function (err) {
-    if (err) {
-      res.json({ code: 500, msg: '退出登录失败' });
-      return;
-    }
-    // req.session.loginUser = null;
-    res.clearCookie('TOKEN');
-    res.json({ code: 200, msg: '退出成功' });
-  });
+  if (req.session.name) {
+    console.log(req.session.username)
+    req.session.destroy(function (err) {
+      if (err) {
+        res.json({ code: 500, msg: '退出登录失败' });
+        return;
+      }
+      // req.session.loginUser = null;
+      res.clearCookie('TOKEN');
+      res.json({ code: 200, msg: '退出成功' });
+    });
+  } else {
+    res.json({ code: 500, msg: '没有登录' });
+  }
+
+}
+module.exports.menu = (req, res, next) => {//访问页面
+  console.log(req.session);
+  if (req.session.name) {
+    var authority = req.session.authority;
+    model.menu.find({ 'authority': authority }, function (err, docs) {
+      if (err) {
+        console.log(err)
+      }
+      console.log(docs)
+      res.json(docs)
+    })
+  } else {
+    res.json({ code: 500, msg: '没有登录' })
+  }
 }
 
 module.exports.page = (req, res, next) => {//访问页面
