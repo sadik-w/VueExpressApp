@@ -6,7 +6,9 @@ var jsonData = require('./methods')
 
 
 module.exports.get_user_info = (req, res, next) => {//获取用户信息
-  res.json(req.session);
+  model.user_info.findOne({ 'username': data.username }, function (err, docs) {
+    res.json(docs)
+  })
 };
 
 module.exports.login = (req, res, next) => {//登录

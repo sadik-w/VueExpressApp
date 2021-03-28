@@ -10,15 +10,18 @@
     "ant-design-vue": "^1.7.3",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "element-ui": "^2.15.0",
+    "element-ui": "^2.15.1",
+    "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-pwa": "^4.5.12",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "axios": "^0.18.0",
+    "babel-plugin-component": "^1.1.1",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-template-compiler": "^2.6.11"
   }
