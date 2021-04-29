@@ -1,8 +1,11 @@
+const path = require('path')
 module.exports = {
   outputDir: '../express/public',
   "transpileDependencies": [
     "vuetify"
   ],
+  pluginOptions: {
+  },
   devServer: {
     host: '0.0.0.0',
     port: 9528,

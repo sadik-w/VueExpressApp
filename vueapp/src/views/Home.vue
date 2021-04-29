@@ -55,6 +55,7 @@
             <a-breadcrumb-item>view</a-breadcrumb-item>
           </a-breadcrumb>
           <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+            <h1>{{s}}</h1>
             <h1>1</h1>
             <h1>1</h1>
             <h1>1</h1>
@@ -95,8 +96,7 @@
             <h1>1</h1>
             <h1>1</h1>
             <h1>1</h1>
-            <h1>1</h1>
-            <div style="width:100px;height:100px;background:red;" @click="backTop">
+            <div class="test" @click="backTop">
             </div>
           </div>
         </a-layout-content>
@@ -109,12 +109,14 @@
 </template>
 
 <script>
+const s = 'hello'
 export default {
   name: 'Home',
   components: {},
   data () {
     return {
       value: false,
+      s,
       radioStyle: {
         display: 'block',
         height: '30px',
@@ -170,6 +172,12 @@ export default {
 }
 </script>
 <style>
+/* $base-color: #c6538c;
+$border-dark: rgba($base-color, 0.88);
+
+.test {
+  border: 1px solid $border-dark;
+} */
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
   height: 31px;

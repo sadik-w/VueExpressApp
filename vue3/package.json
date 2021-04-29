@@ -1,5 +1,5 @@
 {
-  "name": "vueapp",
+  "name": "vue3",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,24 +7,27 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "ant-design-vue": "^1.7.3",
-    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "element-ui": "^2.15.1",
     "register-service-worker": "^1.7.1",
-    "sass": "^1.32.8",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-pwa": "^4.5.12",
+    "@vue/cli-plugin-pwa": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
     "axios": "^0.18.0",
-    "babel-plugin-component": "^1.1.1",
-    "node-sass": "^5.0.0",
-    "vue-cli-plugin-axios": "0.0.4",
-    "vue-template-compiler": "^2.6.11"
-  }
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-axios": "0.0.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
