@@ -55,7 +55,7 @@
             <a-breadcrumb-item>view</a-breadcrumb-item>
           </a-breadcrumb>
           <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-            <h1>{{s}}</h1>
+            <h1>{{this.$store.state.name}}</h1>
             <h1>1</h1>
             <h1>1</h1>
             <h1>1</h1>
